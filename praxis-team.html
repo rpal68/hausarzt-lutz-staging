@@ -324,9 +324,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 //  einmal im Jahr aufraeumen genuegt.
 // ==========================================================
 window.HLZ_URLAUB = {
-  vorlauf_tage: 90,   // Vorab-Hinweis erscheint so viele Tage vorher
+  vorlauf_tage: 14,   // Vorab-Hinweis erscheint so viele Tage vorher
   zeitraeume: [
-    { von: "2026-09-28", bis: "2026-10-09", vertretung: "" },
+    { von: "2026-09-21", bis: "2026-10-02", vertretung: "" },
     // { von: "2026-12-24", bis: "2027-01-01", vertretung: "Praxis Dr. Mustermann, Tel. 09721 12345" },
   ]
 };
@@ -366,8 +366,10 @@ window.HLZ_URLAUB = {
     b.style.cssText='background:'+(dringend?'#A9713F':'#E9D9C4')+';color:'+(dringend?'#fff':'#5C3A21')+
       ';text-align:center;padding:12px 20px;font-size:.95rem;font-weight:600;line-height:1.5;';
     b.textContent=text;
-    var header=document.querySelector('header');
-    if(header && header.parentNode) header.parentNode.insertBefore(b, header.nextSibling);
+    var anchor = el.closest ? el.closest('.infobar') : null;
+    if(!anchor){ var p=el; while(p && p.className!=='infobar'){ p=p.parentElement; } anchor=p; }
+    if(!anchor) anchor = el.parentElement;
+    if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(b, anchor.nextSibling);
   }
   var aktiv=null, kommend=null;
   if(u && u.zeitraeume){

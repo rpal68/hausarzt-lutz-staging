@@ -125,7 +125,7 @@ footer a{color:#E6EDF0;text-decoration:none;margin-left:22px;}
 footer a:first-child{margin-left:0;}
 footer a:hover{text-decoration:underline;}
 
-@media (max-width:820px){
+@media (max-width:900px){
   .l-grid{grid-template-columns:1fr;}
   nav{display:none;}
   .nav-toggle{display:block;background:none;border:1px solid rgba(255,255,255,.4);border-radius:8px;color:#fff;padding:8px 12px;font-size:.9rem;cursor:pointer;}
@@ -182,9 +182,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 //  einmal im Jahr aufraeumen genuegt.
 // ==========================================================
 window.HLZ_URLAUB = {
-  vorlauf_tage: 90,   // Vorab-Hinweis erscheint so viele Tage vorher
+  vorlauf_tage: 14,   // Vorab-Hinweis erscheint so viele Tage vorher
   zeitraeume: [
-    { von: "2026-09-28", bis: "2026-10-09", vertretung: "" },
+    { von: "2026-09-21", bis: "2026-10-02", vertretung: "" },
     // { von: "2026-12-24", bis: "2027-01-01", vertretung: "Praxis Dr. Mustermann, Tel. 09721 12345" },
   ]
 };
@@ -237,8 +237,10 @@ window.HLZ_URLAUB = {
     b.style.cssText='background:'+(dringend?'#A9713F':'#E9D9C4')+';color:'+(dringend?'#fff':'#5C3A21')+
       ';text-align:center;padding:12px 20px;font-size:.95rem;font-weight:600;line-height:1.5;';
     b.textContent=text;
-    var header=document.querySelector('header');
-    if(header && header.parentNode) header.parentNode.insertBefore(b, header.nextSibling);
+    var anchor = el.closest ? el.closest('.infobar') : null;
+    if(!anchor){ var p=el; while(p && p.className!=='infobar'){ p=p.parentElement; } anchor=p; }
+    if(!anchor) anchor = el.parentElement;
+    if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(b, anchor.nextSibling);
   }
 
   // Zeitraeume auswerten: laufender Urlaub oder naechster innerhalb des Vorlaufs

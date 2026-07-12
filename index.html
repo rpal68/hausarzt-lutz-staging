@@ -292,9 +292,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 //  einmal im Jahr aufraeumen genuegt.
 // ==========================================================
 window.HLZ_URLAUB = {
-  vorlauf_tage: 90,   // Vorab-Hinweis erscheint so viele Tage vorher
+  vorlauf_tage: 14,   // Vorab-Hinweis erscheint so viele Tage vorher
   zeitraeume: [
-    { von: "2026-09-28", bis: "2026-10-09", vertretung: "" },
+    { von: "2026-09-21", bis: "2026-10-02", vertretung: "" },
     // { von: "2026-12-24", bis: "2027-01-01", vertretung: "Praxis Dr. Mustermann, Tel. 09721 12345" },
   ]
 };
@@ -347,8 +347,10 @@ window.HLZ_URLAUB = {
     b.style.cssText='background:'+(dringend?'#A9713F':'#E9D9C4')+';color:'+(dringend?'#fff':'#5C3A21')+
       ';text-align:center;padding:12px 20px;font-size:.95rem;font-weight:600;line-height:1.5;';
     b.textContent=text;
-    var header=document.querySelector('header');
-    if(header && header.parentNode) header.parentNode.insertBefore(b, header.nextSibling);
+    var anchor = el.closest ? el.closest('.infobar') : null;
+    if(!anchor){ var p=el; while(p && p.className!=='infobar'){ p=p.parentElement; } anchor=p; }
+    if(!anchor) anchor = el.parentElement;
+    if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(b, anchor.nextSibling);
   }
 
   // Zeitraeume auswerten: laufender Urlaub oder naechster innerhalb des Vorlaufs
@@ -491,7 +493,7 @@ window.HLZ_URLAUB = {
       </div>
       <h3>Hausärztliche &amp; internistische Versorgung</h3>
       <p>Erste Anlaufstelle bei akuten Beschwerden und chronischen Erkrankungen. Diagnostik, Behandlung und langfristige Begleitung – bei Bedarf in Abstimmung mit Fachärzten und Kliniken.</p>
-      <a href="#">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="leistungen.html#versorgung">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="card card--vorsorge">
       <div class="icon" aria-hidden="true">
@@ -501,7 +503,7 @@ window.HLZ_URLAUB = {
       </div>
       <h3>Vorsorge &amp; Früherkennung</h3>
       <p>Gesetzliche Check-up-Untersuchungen und die Einschätzung Ihres persönlichen Risikos für Herz-Kreislauf-Erkrankungen. Dazu Impfberatung nach den Empfehlungen der STIKO.</p>
-      <a href="#">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="leistungen.html#vorsorge">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="card card--reise">
       <div class="icon" aria-hidden="true">
@@ -511,7 +513,7 @@ window.HLZ_URLAUB = {
       </div>
       <h3>Reisemedizin &amp; Gelbfieberimpfstelle</h3>
       <p>Beratung vor Fernreisen, Reiseimpfungen und Hinweise zur Gesundheitsvorsorge unterwegs. Die Praxis ist zugelassene Gelbfieberimpfstelle.</p>
-      <a href="#">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="leistungen.html#reisemedizin">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
