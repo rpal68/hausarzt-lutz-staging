@@ -1,0 +1,113 @@
+/* ============================================================
+   Hausarztpraxis René Lutz – zentrales Stylesheet
+   Gilt für alle Seiten. Seitenspezifisches CSS bleibt in der
+   jeweiligen HTML-Datei.
+   ============================================================ */
+
+/* ---------- Schriften (lokal gehostet, OFL-Lizenz) ---------- */
+@font-face{
+  font-family:"DM Sans";font-style:normal;font-weight:500;font-display:swap;
+  src:url("fonts/dm-sans-500.woff2") format("woff2");
+}
+@font-face{
+  font-family:"DM Sans";font-style:normal;font-weight:600;font-display:swap;
+  src:url("fonts/dm-sans-600.woff2") format("woff2");
+}
+@font-face{
+  font-family:"DM Sans";font-style:normal;font-weight:700;font-display:swap;
+  src:url("fonts/dm-sans-700.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;
+  src:url("fonts/inter-400.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;
+  src:url("fonts/inter-500.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;
+  src:url("fonts/inter-600.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;
+  src:url("fonts/inter-700.woff2") format("woff2");
+}
+
+/* ---------- Farbsystem "Modern Legacy" ---------- */
+:root{
+  --petrol:#34677A;
+  --petrol-dunkel:#33454C;
+  --cognac:#A9713F;
+  --cognac-dunkel:#8C5A2E;
+  --salbei:#7D9276;
+  --camel:#B08A5A;
+  --eiche:#F6F2EB;
+  --text:#33454C;
+  --text-soft:#4B5B62;
+}
+
+/* ---------- Basis ---------- */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  font-family:"Inter","DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:var(--text);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"DM Sans","Inter",system-ui,sans-serif;}
+a{color:var(--cognac-dunkel);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+/* ---------- Info-Leiste ---------- */
+.infobar{background:#2A3840;color:#D8E3E8;font-size:.85rem;}
+.infobar-inner{max-width:1120px;margin:0 auto;padding:7px 24px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;}
+.infobar a.infobar-tel{color:#fff;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:7px;}
+.infobar a.infobar-tel:hover{text-decoration:underline;}
+.infobar a.infobar-tel svg{width:14px;height:14px;color:#B08A5A;}
+.infobar-heute{margin-left:auto;color:#E9D9C4;font-weight:600;}
+@media (max-width:640px){.infobar-adresse{display:none;}.infobar-inner{gap:14px;padding:7px 16px;}}
+
+/* ---------- Header & Navigation ---------- */
+header{background:var(--petrol);position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(42,56,64,.25);}
+.header-inner{display:flex;align-items:center;padding:14px 24px;max-width:1120px;margin:0 auto;justify-content:flex-start;gap:20px;}
+.logo-link{margin-right:auto;}
+.logo-link img{height:46px;width:auto;display:block;}
+nav{display:flex;gap:28px;}
+nav a{color:#EAF1F4;text-decoration:none;font-size:.95rem;font-weight:500;padding:6px 2px;border-bottom:2px solid transparent;}
+nav a:hover,nav a:focus,nav a[aria-current]{border-bottom-color:var(--camel);color:#fff;}
+.nav-toggle{display:none;}
+.btn-rezept{background:var(--cognac-dunkel);color:#fff;padding:9px 18px;border-radius:8px;font-weight:600;font-size:.92rem;text-decoration:none;white-space:nowrap;transition:background .2s ease;}
+.btn-rezept:hover,.btn-rezept:focus{background:#6E4523;color:#fff;}
+@media (max-width:640px){.btn-rezept{padding:8px 13px;font-size:.85rem;}}
+@media (max-width:900px){
+  nav{display:none;}
+  .nav-toggle{display:block;background:none;border:1px solid rgba(255,255,255,.4);border-radius:8px;color:#fff;padding:8px 12px;font-size:.9rem;cursor:pointer;}
+  nav.offen{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--petrol-dunkel);padding:8px 0;}
+  nav.offen a{padding:13px 24px;border-bottom:none;}
+}
+
+/* ---------- CTA & Buttons ---------- */
+.cta{background:var(--petrol-dunkel);color:#fff;padding:56px 0;text-align:center;}
+.cta h2{font-size:clamp(1.4rem,2.6vw,1.8rem);margin-bottom:10px;}
+.cta p{color:#D8E3E8;margin-bottom:24px;}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;text-decoration:none;background:var(--cognac-dunkel);color:#fff;transition:background .2s ease;}
+.btn:hover{background:#6E4523;}
+
+/* ---------- Footer ---------- */
+footer{background:var(--petrol-dunkel);color:#B9C9D0;padding:32px 0;border-top:1px solid rgba(255,255,255,.08);}
+.footer-inner{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;max-width:1120px;margin:0 auto;padding:0 24px;font-size:.9rem;}
+footer a{color:#E6EDF0;text-decoration:none;margin-left:22px;}
+footer a:first-child{margin-left:0;}
+footer a:hover{text-decoration:underline;}
+
+/* ---------- Barrierefreiheit: Skip-Link & Fokus ---------- */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:2000;background:var(--petrol-dunkel,#2a5464);color:#fff;padding:12px 22px;border-radius:0 0 10px 0;font-weight:600;text-decoration:none;font-family:"DM Sans","Inter",system-ui,sans-serif;}
+.skip-link:focus{left:0;}
+main#inhalt:focus{outline:none;}
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--camel,#C89B6A);outline-offset:2px;border-radius:3px;box-shadow:0 0 0 5px rgba(176,138,90,.25);}
+
+/* ---------- Sanftes Einblenden beim Scrollen ---------- */
+.fade-bereit{opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease;}
+.fade-sichtbar{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.fade-bereit{opacity:1;transform:none;transition:none;}}
