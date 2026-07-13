@@ -91,44 +91,10 @@ section.block:nth-of-type(odd) .l-item{background:#FAF7F1;}
       09721&nbsp;21206
     </a>
     <span class="infobar-adresse">Jägersbrunnen 4 · 97421 Schweinfurt</span>
-    <span class="infobar-heute" id="infobar-heute">Sprechzeiten nach Vereinbarung</span>
+    <span class="infobar-heute" id="infobar-heute">Termine nach Vereinbarung</span>
   </div>
 </div>
-<style>
-.infobar{background:#2A3840;color:#D8E3E8;font-size:.85rem;}
-.infobar-inner{
-  max-width:1120px;margin:0 auto;padding:7px 24px;
-  display:flex;align-items:center;gap:26px;flex-wrap:wrap;
-}
-.infobar a.infobar-tel{
-  color:#fff;text-decoration:none;font-weight:600;
-  display:inline-flex;align-items:center;gap:7px;
-}
-.infobar a.infobar-tel:hover{text-decoration:underline;}
-.infobar a.infobar-tel svg{width:14px;height:14px;color:#B08A5A;}
-.infobar-heute{margin-left:auto;color:#E9D9C4;font-weight:600;}
-@media (max-width:640px){
-  .infobar-adresse{display:none;}
-  .infobar-inner{gap:14px;padding:7px 16px;}
-}
-</style>
-<script>
-// ==========================================================
-//  Urlaubsplanung Hausarztpraxis Rene Lutz - ganzes Jahr
-//  Nur diese Datei bearbeiten und per File Manager hochladen.
-//  Datumsformat: JJJJ-MM-TT
-//  Beliebig viele Zeitraeume - einfach Zeilen kopieren.
-//  Abgelaufene Zeitraeume stoeren nicht (werden ignoriert),
-//  einmal im Jahr aufraeumen genuegt.
-// ==========================================================
-window.HLZ_URLAUB = {
-  vorlauf_tage: 14,   // Vorab-Hinweis erscheint so viele Tage vorher
-  zeitraeume: [
-    { von: "2026-09-21", bis: "2026-10-02", vertretung: "" },
-    // { von: "2026-12-24", bis: "2027-01-01", vertretung: "Praxis Dr. Mustermann, Tel. 09721 12345" },
-  ]
-};
-</script>
+<script src="urlaub.js"></script>
 <script>
 (function(){
   var el = document.getElementById('infobar-heute');
