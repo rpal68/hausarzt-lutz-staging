@@ -37,9 +37,9 @@ img{max-width:100%;display:block;}
 .arzt-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;}
 .portrait{
   border-radius:16px;overflow:hidden;box-shadow:0 8px 26px rgba(51,69,76,.16);
-  background:var(--eiche);
+  background:var(--eiche);max-width:380px;aspect-ratio:3/4;
 }
-.portrait img{width:100%;object-fit:cover;aspect-ratio:3/4;}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block;}
 .portrait-platzhalter{
   aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
   color:var(--text-soft);font-size:.9rem;text-align:center;padding:24px;
