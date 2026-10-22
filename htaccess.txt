@@ -1,0 +1,42 @@
+# ============================================================
+# hausarzt-lutz.de – .htaccess (Docroot /web)
+# Stand: Oktober 2026
+# ============================================================
+
+# ------------------------------------------------------------
+# 1. Weiterleitungen: http -> https und www -> ohne www
+#    (eine einzige 301-Weiterleitung, keine Ketten)
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
+    RewriteCond %{SERVER_PORT} !^443$
+    RewriteRule ^(.*)$ https://hausarzt-lutz.de/$1 [R=301,L]
+</IfModule>
+
+# ------------------------------------------------------------
+# 2. Interne Dateien sperren (Anleitungen, Notizen)
+# ------------------------------------------------------------
+<FilesMatch "(?i)^(readme.*|.*\.md)$">
+    Require all denied
+</FilesMatch>
+
+# ------------------------------------------------------------
+# 3. Sicherheits-Header
+# ------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Nur noch HTTPS (HSTS) - 1 Jahr, inkl. Subdomains
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Kein "Erschnüffeln" von Dateitypen
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Seite nicht in fremde Rahmen (iframes) einbettbar
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Beim Klick auf externe Links nur die Domain mitsenden
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Browser-Funktionen abschalten, die die Seite nicht braucht
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+</IfModule>
