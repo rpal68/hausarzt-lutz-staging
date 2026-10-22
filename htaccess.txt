@@ -1,0 +1,66 @@
+# ============================================================
+# hausarzt-lutz.de – .htaccess (Docroot /web)
+# Stand: Oktober 2026
+# ============================================================
+
+RewriteEngine On
+
+# ------------------------------------------------------------
+# 1. 301-Redirects: Alte Baukasten-URLs -> neue Seitenstruktur
+#    (Relaunch Juli 2026)
+#    Ziele absolut, damit auch http/www in EINEM Schritt landen.
+#    QSD = alte Query-Strings (Filter usw.) werden verworfen.
+# ------------------------------------------------------------
+
+# Startseite
+RewriteRule ^Startseite/?$ https://hausarzt-lutz.de/ [R=301,L,QSD]
+
+# Praxis & Team
+RewriteRule ^Ueber-uns/?$ https://hausarzt-lutz.de/praxis-team.html [R=301,L,QSD]
+RewriteRule ^Unsere-Praxis/?$ https://hausarzt-lutz.de/praxis-team.html [R=301,L,QSD]
+
+# Rechtliches
+RewriteRule ^Impressum/?$ https://hausarzt-lutz.de/impressum.html [R=301,L,QSD]
+RewriteRule ^Datenschutz/?$ https://hausarzt-lutz.de/datenschutz.html [R=301,L,QSD]
+
+# News/Aktuelles (inkl. alter Filter-URLs)
+RewriteRule ^News(/.*)?$ https://hausarzt-lutz.de/news.html [R=301,L,QSD]
+
+# Service-Seite (Kontakt, Rezept, Rückruf laufen jetzt zusammen)
+RewriteRule ^Kontakt(/index\.php)?/?$ https://hausarzt-lutz.de/service.html [R=301,L,QSD]
+RewriteRule ^Rezept-Service/?$ https://hausarzt-lutz.de/service.html [R=301,L,QSD]
+RewriteRule ^Rueckruf-Service(/index\.php)?/?$ https://hausarzt-lutz.de/service.html [R=301,L,QSD]
+
+# ------------------------------------------------------------
+# 2. Alles andere: http -> https und www -> ohne www
+# ------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^(.*)$ https://hausarzt-lutz.de/$1 [R=301,L]
+
+# ------------------------------------------------------------
+# 3. Interne Dateien sperren (Anleitungen, Notizen)
+# ------------------------------------------------------------
+<FilesMatch "(?i)^(readme.*|.*\.md)$">
+    Require all denied
+</FilesMatch>
+
+# ------------------------------------------------------------
+# 4. Sicherheits-Header
+# ------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Nur noch HTTPS (HSTS) - 1 Jahr, inkl. Subdomains
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Kein "Erschnüffeln" von Dateitypen
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Seite nicht in fremde Rahmen (iframes) einbettbar
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Beim Klick auf externe Links nur die Domain mitsenden
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Browser-Funktionen abschalten, die die Seite nicht braucht
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+</IfModule>
